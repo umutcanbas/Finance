@@ -2,7 +2,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import AuthNavigator from './AuthNavigator';
-import AppNavigator from './AppNavigator'
+import AppNavigator from './AppNavigator';
+
 
 import routes from './routes';
 
@@ -18,9 +19,10 @@ const RootNavigator = () => {
           headerShown: false,
         }}>
         <Stack.Screen name={routes.AUTH_NAVIGATOR} component={AuthNavigator} />
-         <Stack.Screen name={routes.APP_NAVIGATOR} component={AppNavigator} /> 
+        <Stack.Screen name={routes.APP_NAVIGATOR} component={AppNavigator} />
+    
       </Stack.Navigator>
-     {/*  <FlashMessage position="top" /> */}
+      {/*  <FlashMessage position="top" /> */}
     </NavigationContainer>
   );
 };
