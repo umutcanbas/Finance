@@ -15,12 +15,13 @@ const Login = ({navigation}) => {
   const dispatch = useDispatch();
 
   const goLogin = () => {
-    if (email.trim() === '' || password.trim() === '') {
+  /*   if (email.trim() === '' || password.trim() === '') {
       Alert.alert('Error', 'Please enter email and password');
       return;
-    }
+    } */
+   /* email === 'aa@mail.com' && password === '123123' */
 
-    if (email === 'aa@mail.com' && password === '123123') {
+    if (true) {
       dispatch(login({username: email}));
       navigation.replace(routes.APP_NAVIGATOR);
     } else {

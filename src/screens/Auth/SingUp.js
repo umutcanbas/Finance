@@ -5,7 +5,12 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import routes from '../../navigation/routes';
 
+import {useDispatch} from 'react-redux';
+import {login} from '../../redux/user';
+
 const SingUp = ({navigation}) => {
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rePassword, setRepassword] = useState('');
@@ -16,9 +21,19 @@ const SingUp = ({navigation}) => {
 
   const goSingUp = () => {
     if (email.trim() === '' || password.trim() === '') {
-      Alert.alert('Error', 'Please enter email and password');
+      Alert.alert('Error', 'Please enter email ,password and repassword');
       return;
-    } else navigation.replace(routes.APP_NAVIGATOR);
+    }
+    if (
+      email === 'aa@mail.com' &&
+      password === '123123' &&
+      rePassword === '123123'
+    ) {
+      dispatch(login({username: email}));
+      navigation.replace(routes.APP_NAVIGATOR);
+    } else {
+      Alert.alert('Error', 'Invalid credentials');
+    }
   };
 
   return (
@@ -39,7 +54,7 @@ const SingUp = ({navigation}) => {
       />
 
       <View style={styles.buttonContainer}>
-        <Button title="Login" onPress={goLogin} />
+        <Button title="Go Back" onPress={goLogin} />
         <Button title="SingUp" onPress={goSingUp} />
       </View>
     </SafeAreaView>
