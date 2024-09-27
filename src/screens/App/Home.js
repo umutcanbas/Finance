@@ -1,14 +1,29 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import FinanceCard from '../../components/FinanceCard';
 
 const Home = () => {
   return (
-    <View>
-      <Text>Home</Text>
-    </View>
-  )
-}
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.headerText}>AAAA</Text>
 
-export default Home
+      <FinanceCard/>
+    </SafeAreaView>
+  );
+};
 
-const styles = StyleSheet.create({})
+export default Home;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff8dc',
+    alignItems: 'center',
+  },
+  headerText: {
+    fontWeight: 'bold',
+    fontSize: 34,
+    color: 'black',
+    margin:20
+  },
+});
