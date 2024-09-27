@@ -1,28 +1,52 @@
 import React from 'react';
 
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import routes from './routes';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
+import routes from './routes';
 import Home from '../screens/App/Home';
 import Profile from '../screens/App/Profile';
 
+import HomeLine from '../assets/svg/home-line.svg';
+import HomeFill from '../assets/svg/home-fill.svg';
+import ProfileLine from '../assets/svg/user-line.svg';
+import ProfileFill from '../assets/svg/user-fill.svg';
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => {
+  const iconList = {
+    home: HomeLine,
+    homeFill: HomeFill,
+    profile: ProfileLine,
+    profileFill: ProfileFill,
+  };
+
   return (
-    <Stack.Navigator
-      screenOptions={{
+    <Tab.Navigator
+      screenOptions={({route}) => ({
         headerShown: false,
-      }}>
-      <Stack.Screen name={routes.HOME} component={Home} />
-      <Stack.Screen name={routes.PROFILE} component={Profile} />
-    {/*   <Stack.Screen
-        name={routes.DAILY_FORM}
-        component={DailyForm}
-        options={{presentation: 'modal', gestureEnabled: false}}
-      /> */}
-    </Stack.Navigator>
+        tabBarShowLabel: false,
+
+        tabBarStyle: {
+          borderColor: 'transparent',
+          backgroundColor:'#ffebcd'
+        },
+
+        tabBarIcon: ({focused}) => {
+          let Icon;
+
+          if (route.name === routes.HOME) {
+            Icon = focused ? iconList?.homeFill : iconList?.home;
+          } else if (route.name === routes.PROFILE) {
+            Icon = focused ? iconList?.profileFill : iconList?.profile;
+          }
+
+          return <Icon width={23} height={23} />;
+        },
+      })}>
+      <Tab.Screen name={routes.HOME} component={Home} />
+      <Tab.Screen name={routes.PROFILE} component={Profile} />
+    </Tab.Navigator>
   );
 };
 
