@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'black',
-    fontSize: 19,
+    fontSize: 16,
     fontWeight: 'bold',
   },
 });
