@@ -18,7 +18,10 @@ const FinanceCard = () => {
           title="+"
           onPress={() => navigation.navigate(routes.FINANCE_FORM)}
         />
-        <CustomButton title="-" />
+        <CustomButton
+          title="-"
+          onPress={() => navigation.navigate(routes.FINANCE_FORM)}
+        />
       </View>
     </View>
   );
