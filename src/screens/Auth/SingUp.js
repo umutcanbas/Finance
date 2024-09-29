@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   headerText: {
     fontWeight: 'bold',
     fontSize: 35,
-    color: 'black',
+    color: 'white',
   },
   buttonContainer: {
     flexDirection: 'row',

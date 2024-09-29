@@ -15,13 +15,13 @@ const Login = ({navigation}) => {
   const dispatch = useDispatch();
 
   const goLogin = () => {
-  /*   if (email.trim() === '' || password.trim() === '') {
+    if (email.trim() === '' || password.trim() === '') {
       Alert.alert('Error', 'Please enter email and password');
       return;
-    } */
-   /* email === 'aa@mail.com' && password === '123123' */
+    }
 
-    if (true) {
+
+    if ( email === 'aa@mail.com' && password === '123123') {
       dispatch(login({username: email}));
       navigation.replace(routes.APP_NAVIGATOR);
     } else {
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   headerText: {
     fontWeight: 'bold',
     fontSize: 35,
-    color: 'black',
+    color: 'white',
   },
   buttonContainer: {
     flexDirection: 'row',
