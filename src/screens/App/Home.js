@@ -5,7 +5,7 @@ import FinanceCard from '../../components/FinanceCard';
 const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.headerText}>AAAA</Text>
+      <Text style={styles.headerText}>FINANCE</Text>
 
       <FinanceCard/>
     </SafeAreaView>
