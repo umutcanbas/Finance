@@ -7,7 +7,7 @@ import routes from '../navigation/routes';
 
 import {useSelector} from 'react-redux';
 
-const Finance = () => {
+const FinanceCard = () => {
   const navigation = useNavigation();
 
   const moneyStatus = useSelector(state => state.user.moneyStatus);
@@ -20,12 +20,10 @@ const Finance = () => {
     .filter(item => item.type == 'expense')
     .reduce((acc, cur) => Number(acc) + Number(cur.money), 0);
 
-    console.log(totalIncome)
-
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text style={styles.headerText}>money:</Text>
+        <Text style={styles.headerText}>Total Finances:</Text>
         <Text style={styles.headerMoney}>{totalIncome - totalExpense}</Text>
       </View>
 
@@ -47,13 +45,13 @@ const Finance = () => {
   );
 };
 
-export default Finance;
+export default FinanceCard;
 
 const styles = StyleSheet.create({
   container: {
     height: 150,
     width: 300,
-    backgroundColor: 'grey',
+    backgroundColor: 'white',
     borderRadius: 30,
     marginVertical: 10,
   },
