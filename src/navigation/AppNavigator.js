@@ -29,8 +29,8 @@ const AppNavigator = () => {
         tabBarShowLabel: false,
 
         tabBarStyle: {
-          borderColor: 'transparent',
-          backgroundColor: '#ffebcd',
+          borderTopWidth: 0,
+          backgroundColor: '#6495ed',
         },
 
         tabBarIcon: ({focused}) => {
