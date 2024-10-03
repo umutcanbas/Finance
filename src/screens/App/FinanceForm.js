@@ -10,7 +10,9 @@ import {
 } from 'react-native';
 
 import DropDownPicker from 'react-native-dropdown-picker';
+
 import CustomButton from '../../components/Button';
+import CustomInput from '../../components/Input';
 
 import {saveFinanceForm} from '../../redux/user';
 import {useDispatch} from 'react-redux';

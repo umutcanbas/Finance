@@ -44,6 +44,7 @@ const Login = ({navigation}) => {
         value={password}
         onChangeText={setPassword}
         placeholder="Password"
+        isSecure
       />
 
       <View style={styles.buttonContainer}>

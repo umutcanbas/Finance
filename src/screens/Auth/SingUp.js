@@ -47,11 +47,13 @@ const SingUp = ({navigation}) => {
         value={password}
         onChangeText={setPassword}
         placeholder="Password"
+        isSecure
       />
       <CustomInput
         value={rePassword}
         onChangeText={setRepassword}
         placeholder="RePassword"
+        isSecure
       />
 
       <View style={styles.buttonContainer}>
