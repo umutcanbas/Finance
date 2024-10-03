@@ -4,30 +4,50 @@ import CustomButton from './Button';
 
 import {useNavigation} from '@react-navigation/native';
 import routes from '../navigation/routes';
-const FinanceCard = () => {
+
+import {useSelector} from 'react-redux';
+
+const Finance = () => {
   const navigation = useNavigation();
+
+  const moneyStatus = useSelector(state => state.user.moneyStatus);
+
+  const totalIncome = moneyStatus
+    .filter(item => item.type == 'income')
+    .reduce((acc, cur) => Number(acc) + Number(cur.money), 0);
+
+  const totalExpense = moneyStatus
+    .filter(item => item.type == 'expense')
+    .reduce((acc, cur) => Number(acc) + Number(cur.money), 0);
+
+    console.log(totalIncome)
+
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>money:</Text>
-        <Text style={styles.headerText}>cok para</Text>
+        <Text style={styles.headerMoney}>{totalIncome - totalExpense}</Text>
       </View>
 
       <View style={styles.buttonContainer}>
         <CustomButton
           title="+"
-          onPress={() => navigation.navigate(routes.FINANCE_FORM)}
+          onPress={() =>
+            navigation.navigate(routes.FINANCE_FORM, {type: 'income'})
+          }
         />
         <CustomButton
           title="-"
-          onPress={() => navigation.navigate(routes.FINANCE_FORM)}
+          onPress={() =>
+            navigation.navigate(routes.FINANCE_FORM, {type: 'expense'})
+          }
         />
       </View>
     </View>
   );
 };
 
-export default FinanceCard;
+export default Finance;
 
 const styles = StyleSheet.create({
   container: {
@@ -48,6 +68,11 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: 'black',
     marginHorizontal: 10,
+  },
+  headerMoney: {
+    fontWeight: 'bold',
+    fontSize: 17,
+    color: 'black',
   },
   buttonContainer: {
     flexDirection: 'row',

@@ -1,13 +1,13 @@
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import FinanceCard from '../../components/FinanceCard';
+import Finance from '../../components/Finance';
 
 const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.headerText}>FINANCE</Text>
 
-      <FinanceCard/>
+      <Finance/>
     </SafeAreaView>
   );
 };

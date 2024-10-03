@@ -7,25 +7,50 @@ import {
   TextInput,
   TouchableWithoutFeedback,
   Keyboard,
-  Button,
 } from 'react-native';
 
 import DropDownPicker from 'react-native-dropdown-picker';
-import DatePicker from 'react-native-date-picker';
+import CustomButton from '../../components/Button';
 
-const FinanceForm = () => {
-  const [type, setType] = useState('income');
-  const [spendValue, setSpendValue] = useState(null);
-  const [spendType, setSpendType] = useState([
-    {label: 'Income', value: 'income'},
-    {label: 'Monthly', value: 'monthly'},
-    {label: 'Installments', value: 'installments'},
-    {label: 'Casual', value: 'casual'},
-  ]);
+import {saveFinanceForm} from '../../redux/user';
+import {useDispatch} from 'react-redux';
+
+import {useNavigation} from '@react-navigation/native';
+
+const FinanceForm = ({route}) => {
+  const selectedType = route.params.type;
+
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
+  const [type, setType] = useState(selectedType);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [amountMoney, setAmountMoney] = useState(null);
+  const [description, setDescription] = useState('');
+
+  const [category, setCategory] = useState([
+    {label: 'Salary', value: 'salary'},
+    {label: 'Rent', value: 'rent'},
+    {label: 'Surprise', value: 'surprise'},
+    {label: 'Subscription', value: 'subscription'},
+    {label: 'Food', value: 'food'},
+    {label: 'Invoice', value: 'invoice'},
+  ]);
+
   const [dropOpen, setDropOpen] = useState(false);
-  const [dateOpen, setDateOpen] = useState(false);
-  const [date, setDate] = useState(new Date());
+
+  const closeModal = () => {
+    dispatch(
+      saveFinanceForm({
+        type,
+        category: selectedCategory,
+        money: amountMoney,
+        description,
+        date: new Date().toLocaleString(),
+      }),
+    );
+    navigation.goBack();
+  };
 
   const SelectType = ({title, onPress}) => {
     return (
@@ -43,18 +68,6 @@ const FinanceForm = () => {
     );
   };
 
-  const SelectAmountMoney = ({value, onChange, placeholder}) => {
-    return (
-      <TextInput
-        placeholder={placeholder}
-        placeholderTextColor="grey"
-        value={value}
-        onChange={onChange}
-        keyboardType="numeric"
-      />
-    );
-  };
-
   return (
     <TouchableWithoutFeedback
       style={{flex: 1}}
@@ -64,43 +77,37 @@ const FinanceForm = () => {
           <Text style={styles.headerText}>Finance Form</Text>
         </View>
 
-        <DropDownPicker
-          open={dropOpen}
-          value={spendValue}
-          items={spendType}
-          setOpen={setDropOpen}
-          setValue={setSpendValue}
-          setItems={setSpendType}
-          containerStyle={styles.dropDownContainer}
-        />
-
         <SelectType title="Income" onPress={() => setType('income')} />
         <SelectType title="Expense" onPress={() => setType('expense')} />
 
+        <DropDownPicker
+          open={dropOpen}
+          value={selectedCategory}
+          items={category}
+          setOpen={setDropOpen}
+          setValue={setSelectedCategory}
+          setItems={setCategory}
+          containerStyle={styles.dropDownContainer}
+        />
+
         <View style={styles.inputContainer}>
-          <SelectAmountMoney
+          <TextInput
             value={amountMoney}
-            onChange={setAmountMoney}
+            onChangeText={setAmountMoney}
             placeholder="Amount of money"
+            keyboardType="numeric"
           />
         </View>
 
-        <View style={styles.dateContainer}>
-          <Button title="Open" onPress={() => setDateOpen(true)} />
-          <DatePicker
-            modal
-            mode="date"
-            open={dateOpen}
-            date={date}
-            onConfirm={date => {
-              setDateOpen(false);
-              setDate(date);
-            }}
-            onCancel={() => {
-              setDate(false);
-            }}
+        <View style={[styles.inputContainer, {height: 100}]}>
+          <TextInput
+            value={description}
+            onChangeText={setDescription}
+            placeholder="Description"
           />
         </View>
+
+        <CustomButton title="Done" onPress={closeModal} />
       </View>
     </TouchableWithoutFeedback>
   );
@@ -121,9 +128,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 27,
     color: 'white',
+    marginBottom: 20,
   },
   dropDownContainer: {
-    marginTop: 20,
     marginBottom: 10,
   },
   selectTypeButton: {
@@ -164,13 +171,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     height: 50,
     paddingHorizontal: 10,
+    marginBottom: 10,
     borderRadius: 8,
     borderWidth: 0.3,
     borderColor: 'black',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  dateContainer: {},
 });
 
 export default FinanceForm;
