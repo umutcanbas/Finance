@@ -48,7 +48,7 @@ const FinanceForm = ({route}) => {
         category: selectedCategory,
         money: amountMoney,
         description,
-        date: new Date().toLocaleString(),
+        date: new Date().toISOString(),
       }),
     );
     navigation.goBack();
