@@ -4,8 +4,9 @@ import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {login} from '../../redux/user';
 
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import CustomInput from '../../components/Input';
+import CustomButton from '../../components/Button';
+
 import routes from '../../navigation/routes';
 
 const Login = ({navigation}) => {
@@ -38,16 +39,16 @@ const Login = ({navigation}) => {
       <View style={styles.header}>
         <Text style={styles.headerText}>Login</Text>
       </View>
-      <Input value={email} onChangeText={setEmail} placeholder="E-mail" />
-      <Input
+      <CustomInput value={email} onChangeText={setEmail} placeholder="E-mail" />
+      <CustomInput
         value={password}
         onChangeText={setPassword}
         placeholder="Password"
       />
 
       <View style={styles.buttonContainer}>
-        <Button title="Login" onPress={goLogin} />
-        <Button title="Register" onPress={goSingUp} />
+        <CustomButton title="Login" onPress={goLogin} />
+        <CustomButton title="Register" onPress={goSingUp} />
       </View>
     </SafeAreaView>
   );

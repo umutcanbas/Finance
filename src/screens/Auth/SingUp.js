@@ -1,8 +1,9 @@
 import {Alert, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import CustomInput from '../../components/Input';
+import CustomButton from '../../components/Button';
+
 import routes from '../../navigation/routes';
 
 import {useDispatch} from 'react-redux';
@@ -41,21 +42,21 @@ const SingUp = ({navigation}) => {
       <View style={styles.header}>
         <Text style={styles.headerText}>SingUp</Text>
       </View>
-      <Input value={email} onChangeText={setEmail} placeholder="E-mail" />
-      <Input
+      <CustomInput value={email} onChangeText={setEmail} placeholder="E-mail" />
+      <CustomInput
         value={password}
         onChangeText={setPassword}
         placeholder="Password"
       />
-      <Input
+      <CustomInput
         value={rePassword}
         onChangeText={setRepassword}
         placeholder="RePassword"
       />
 
       <View style={styles.buttonContainer}>
-        <Button title="Go Back" onPress={goLogin} />
-        <Button title="SingUp" onPress={goSingUp} />
+        <CustomButton title="Go Back" onPress={goLogin} />
+        <CustomButton title="SingUp" onPress={goSingUp} />
       </View>
     </SafeAreaView>
   );
