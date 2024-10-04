@@ -1,17 +1,16 @@
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+
 import {useSelector} from 'react-redux';
 
 const LastActivities = () => {
   const moneyStatus = useSelector(state => state.user.moneyStatus);
 
-
   const renderItem = ({item}) => {
-    const category = item?.category?.toUpperCase() || 'unknown';
-    const money = item.money || 'unknown';
-    const description = item.description || 'unknown';
-    const date = item?.date?.toString().split('T')[0]
-
+    const category = item?.category?.toUpperCase() || 'UNKNOWN';
+    const money = item.money || 'UNKNOWN';
+    const description = item.description || 'UNKNOWN';
+    const date = item?.date?.toString().split('T')[0];
 
     const isIncome = item.type === 'income';
     const moneyStyle = isIncome ? styles.income : styles.expense;
@@ -20,7 +19,9 @@ const LastActivities = () => {
       <View style={styles.itemContainer}>
         <View style={styles.itemInnerContainer}>
           <Text style={[styles.itemMoney, moneyStyle]}>{money}</Text>
-          <Text style={styles.itemText}>{category}</Text>
+          <View style={styles.itemCategoryContainer}>
+            <Text style={styles.itemText}>{category}</Text>
+          </View>
         </View>
 
         <View style={styles.itemInnerContainer}>
@@ -74,6 +75,15 @@ const styles = StyleSheet.create({
   itemInnerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginBottom:5
+  },
+  itemCategoryContainer: {
+    justifyContent:'center',
+    alignItems:'center',
+    width:150,
+    height:20,
+    backgroundColor: 'white',
+    borderRadius: 5,
   },
   itemText: {
     fontSize: 16,
