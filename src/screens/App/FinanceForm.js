@@ -12,7 +12,6 @@ import {
 import DropDownPicker from 'react-native-dropdown-picker';
 
 import CustomButton from '../../components/Button';
-import CustomInput from '../../components/Input';
 
 import {saveFinanceForm} from '../../redux/user';
 import {useDispatch} from 'react-redux';
@@ -42,6 +41,10 @@ const FinanceForm = ({route}) => {
   const [dropOpen, setDropOpen] = useState(false);
 
   const closeModal = () => {
+    if (!selectedCategory || !amountMoney || !description) {
+      alert('Please fill in all fields: Category, Amount, and Description.');
+      return;
+    }
     dispatch(
       saveFinanceForm({
         type,
@@ -51,6 +54,7 @@ const FinanceForm = ({route}) => {
         date: new Date().toISOString(),
       }),
     );
+
     navigation.goBack();
   };
 
