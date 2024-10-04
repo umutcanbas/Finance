@@ -2,7 +2,7 @@ import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {useSelector} from 'react-redux';
 
-const IncomeExpense = () => {
+const LastActivities = () => {
   const moneyStatus = useSelector(state => state.user.moneyStatus);
 
 
@@ -47,7 +47,7 @@ const IncomeExpense = () => {
   );
 };
 
-export default IncomeExpense;
+export default LastActivities;
 
 const styles = StyleSheet.create({
   container: {

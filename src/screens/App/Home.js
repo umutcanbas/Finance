@@ -1,7 +1,7 @@
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import FinanceCard from '../../components/FinanceCard';
-import IncomeExpense from '../../components/IncomeExpense';
+import LastActivities from '../../components/LastActivities';
 
 const Home = () => {
   return (
@@ -9,7 +9,7 @@ const Home = () => {
       <Text style={styles.headerText}>FINANCE</Text>
 
       <FinanceCard />
-      <IncomeExpense />
+      <LastActivities />
     </SafeAreaView>
   );
 };
