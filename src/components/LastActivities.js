@@ -6,7 +6,11 @@ import {useSelector} from 'react-redux';
 const LastActivities = () => {
   const moneyStatus = useSelector(state => state.user.moneyStatus);
 
-  const renderItem = ({item}) => {
+  const sortedMoneyData = [...moneyStatus].sort(
+    (a, b) => new Date(b.date) - new Date(a.date),
+  );
+
+  const renderLastActions = ({item}) => {
     const category = item?.category?.toUpperCase() || 'UNKNOWN';
     const money = item.money || 'UNKNOWN';
     const description = item.description || 'UNKNOWN';
@@ -38,11 +42,9 @@ const LastActivities = () => {
         <Text style={styles.headerText}>Last Income and Expenses</Text>
       </View>
       <FlatList
-        data={[...moneyStatus].sort(
-          (a, b) => new Date(b.date) - new Date(a.date),
-        )}
-        renderItem={renderItem}
-        keyExtractor={(item, index) => index.toString()}
+        data={sortedMoneyData}
+        renderItem={renderLastActions}
+        keyExtractor={(_, index) => index.toString()}
       />
     </View>
   );
@@ -75,13 +77,13 @@ const styles = StyleSheet.create({
   itemInnerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom:5
+    marginBottom: 5,
   },
   itemCategoryContainer: {
-    justifyContent:'center',
-    alignItems:'center',
-    width:150,
-    height:20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 150,
+    height: 20,
     backgroundColor: 'white',
     borderRadius: 5,
   },
