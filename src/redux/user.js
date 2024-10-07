@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
   username: '',
-  isLogged: true,
+  isLogged: false,
   moneyStatus: [],
 };
 
@@ -11,6 +11,10 @@ const user = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
+      state.username = action.payload.username;
+      state.isLogged = true;
+    },
+    register:(state,action) =>{
       state.username = action.payload.username;
       state.isLogged = true;
     },

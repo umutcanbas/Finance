@@ -7,7 +7,7 @@ import CustomButton from '../../components/Button';
 import routes from '../../navigation/routes';
 
 import {useDispatch} from 'react-redux';
-import {login} from '../../redux/user';
+import {register} from '../../redux/user';
 
 const SingUp = ({navigation}) => {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const SingUp = ({navigation}) => {
       password === '123123' &&
       rePassword === '123123'
     ) {
-      dispatch(login({username: email}));
+      dispatch(register({username: email}));
       navigation.replace(routes.APP_NAVIGATOR);
     } else {
       Alert.alert('Error', 'Invalid credentials');
