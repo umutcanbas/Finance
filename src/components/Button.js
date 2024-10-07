@@ -1,11 +1,25 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 
-const CustomButton = ({title, onPress}) => {
+import PlusIcon from '../assets/svg/plus.svg';
+import MinusIcon from '../assets/svg/minus.svg';
+
+const CustomButton = ({title, onPress, icon}) => {
+  const renderIcon = {
+    '+': <PlusIcon width={23} height={23} />,
+    '-': <MinusIcon width={23} height={23} />,
+  };
   return (
     <View style={styles.container}>
-      <TouchableOpacity  activeOpacity={0.8} style={styles.button} onPress={onPress}>
-        <Text style={styles.buttonText}>{title}</Text>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        style={styles.button}
+        onPress={onPress}>
+        {title ? (
+          <Text style={styles.buttonText}>{title}</Text>
+        ) : (
+          renderIcon[icon]
+        )}
       </TouchableOpacity>
     </View>
   );
