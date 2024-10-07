@@ -51,6 +51,8 @@ const Profile = ({navigation}) => {
       }, {});
   }, [moneyStatus]);
 
+  console.log(expenseData ? 'a' : 'b');
+
   const handleLogOut = () => {
     dispatch(logOut());
     navigation.replace(routes.AUTH_NAVIGATOR, {screen: routes.LOGIN});
@@ -66,8 +68,13 @@ const Profile = ({navigation}) => {
       </View>
 
       <ScrollView style={styles.innerContainer}>
-        <PieCard data={expenseData} title="Expense" />
-        <PieCard data={incomeData} title="Income" />
+        {Object.keys(expenseData).length > 0 ? (
+          <PieCard data={expenseData} title="Expense" />
+        ) : null}
+        
+        {Object.keys(incomeData).length > 0 ? (
+          <PieCard data={incomeData} title="Income" />
+        ) : null}
       </ScrollView>
     </View>
   );
@@ -95,8 +102,8 @@ const styles = StyleSheet.create({
   button: {
     marginLeft: 100,
   },
-  innerContainer:{
-    flexGrow: 1, 
+  innerContainer: {
+    flexGrow: 1,
     minHeight: '100%',
-  }
+  },
 });
