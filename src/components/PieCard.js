@@ -3,30 +3,19 @@ import {View, Text, StyleSheet} from 'react-native';
 import {PieChart} from 'react-native-gifted-charts';
 
 const PieCard = ({data, title}) => {
-
-  const getColorByCategory = category => {
-    switch (category.toLowerCase()) {
-      case 'rent':
-        return '#009FFF';
-      case 'invoice':
-        return '#93FCF8';
-      case 'subscription':
-        return '#FFA5BA';
-      case 'food':
-        return '#FF6347';
-      case 'surprise':
-        return '#FFD700';
-      case 'salary':
-        return '#32CD32';
-      default:
-        return '#BDB2FA';
-    }
+  const getColorByCategory = {
+    rent: '#009FFF',
+    invoice: '#93FCF8',
+    subscription: '#FFA5BA',
+    food: '#FF6347',
+    surprise: '#FFD700',
+    salary: '#32CD32',
   };
 
   const pieData = Object.entries(data).map(([category, value]) => ({
     value,
-    color: getColorByCategory(category),
-    gradientCenterColor: getColorByCategory(category),
+    color: getColorByCategory[category] || '#BDB2FA',
+    gradientCenterColor: getColorByCategory[category] || '#BDB2FA',
     label: category,
   }));
 
@@ -43,12 +32,12 @@ const PieCard = ({data, title}) => {
             <View
               style={[
                 styles.dot,
-                {backgroundColor: getColorByCategory(category)},
+                {backgroundColor: getColorByCategory[category] || '#BDB2FA'},
               ]}
             />
             <Text style={styles.legendText}>
               {category.charAt(0).toUpperCase() + category.slice(1)}:{' '}
-              {data[category]}₺
+              {data[category]}$
             </Text>
           </View>
         ))}
@@ -67,10 +56,10 @@ const PieCard = ({data, title}) => {
           sectionAutoFocus
           radius={90}
           innerRadius={60}
-          innerCircleColor={'#232B5D'}
+          innerCircleColor="#232B5D"
           centerLabelComponent={() => (
             <View style={styles.centerLabel}>
-              <Text style={styles.centerLabelText}>{totalExpense}₺</Text>
+              <Text style={styles.centerLabelText}>{totalExpense}$</Text>
               <Text style={styles.centerLabelSubText}>Total</Text>
             </View>
           )}
