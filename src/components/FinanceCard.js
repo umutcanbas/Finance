@@ -26,7 +26,7 @@ const FinanceCard = () => {
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>Total Finances:</Text>
-        <Text style={styles.headerMoney}>{totalMoney}</Text>
+        <Text style={styles.headerMoney}>{totalMoney}$</Text>
       </View>
 
       <View style={styles.buttonContainer}>
