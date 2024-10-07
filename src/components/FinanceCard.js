@@ -20,22 +20,24 @@ const FinanceCard = () => {
     .filter(item => item.type == 'expense')
     .reduce((acc, cur) => Number(acc) + Number(cur.money), 0);
 
+  const totalMoney = totalIncome - totalExpense;
+
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>Total Finances:</Text>
-        <Text style={styles.headerMoney}>{totalIncome - totalExpense}</Text>
+        <Text style={styles.headerMoney}>{totalMoney}</Text>
       </View>
 
       <View style={styles.buttonContainer}>
         <CustomButton
-          title="+"
+          icon="+"
           onPress={() =>
             navigation.navigate(routes.FINANCE_FORM, {type: 'income'})
           }
         />
         <CustomButton
-          title="-"
+          icon="-"
           onPress={() =>
             navigation.navigate(routes.FINANCE_FORM, {type: 'expense'})
           }
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 14,
+    marginVertical: 20,
   },
   headerText: {
     fontWeight: 'bold',
